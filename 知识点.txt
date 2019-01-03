@@ -1,0 +1,78 @@
+maven的学习：
+·maven的好处；
+·maven的好处如何实现；
+·maven安装、配置本地仓库；
+·maven项目标准目录结构；
+·maven常用的应用；
+·maven创建web项目案例；
+
+1.开源 、项目构建工具、管理依赖
+2.maven找jar包：
+	项目里没有jar包，项目——仓库：
+	坐标：作为jar包，如何给出坐标；
+	举例：Struts2-core-2.3.14.jar包
+	Apache（公司名称）开发+struts2（项目名称）+2.3.14（版本信息）
+	{构成jar包信息}
+	
+	项目————————————————————————————仓库
+	
+	项目直接从仓库里面寻找：
+	maven项目需要一个jar包，只需要咋maven项目里面配置jar包的坐标信息。
+	maven程序更加jar包坐标信息去jar包仓库中寻找；
+	
+	总结，依赖管理：统一对jar包进行管理；无jar包，项目小；
+	
+3.可拷贝10份依赖信息，但可把jar包信息，放在一个工程了，其他10个工程采取继承就可，依赖信息全部继承；
+4.maven两大核心
+	①依赖管理：不拷贝jar包，管理jar包，项目小
+	②项目构建：项目在编码完成后，对项目进行编译、测试、打包、部署等使用命令；
+	通过maven命令，将web项目发布到Tomcat上：
+	·进入项目目录；
+	·mvn tomcat:run
+5.maven纯java开发，运行依赖jdk
+	①官网下载一个压缩包，解压本地磁盘（目录不要有中文空格）
+	目录结构：
+		·bin：可以执行的脚本命令；
+		·conf：配置文件，；
+		·lib：maven项目运行需要的jar包；
+	②配置环境变量：
+	MAVEN_HOME：配置到bin目录上一级；
+	path：%MAVEN_HOME%\bin；
+	（需要jdk，通过JAVA_HOME识别）
+	测试是否正确：JAVA -VERSION(jdk) mvn -v
+6.仓库：
+	①本地仓库：在自己的计算机上；
+	②私服：存在于本地的局域网内（服务器），就是说可能该程序需要10G的jar
+	       包，不可能将jar都拷贝到每个程序员计算机上，所以放在企业的服务器上；
+	③中央仓库：在国外，在互联网上，存放世界上所用的java包，由maven团队维护；
+7.配置本地仓库：
+	·找到仓库的jar包；
+	·解压到随便一个目录下，但要告诉项目仓库在哪；
+	·配置本地仓库（知道仓库在哪）：将maven的解压包下有一个setting.xml文件
+		<localRepository>仓库的路径</localRepository>
+8.maven项目标准目录结构；
+	·src:存放项目的源码
+	·pom.xml：maven项目的核心配置文件，每个maven项目必须有一个该文件；
+	·target:src源码编译完后存放的路径；
+	
+	按照目录结构来创建项目的（重要），可用maven命令直接运行；
+9.maven常用命令的应用
+	①clean：删除编译的文件，让项目处于未编译状态，其实是删除了项目中的target文件；
+			其实是一个jar包在处理；
+	②compile:编译，将项目中.java文件编译成.class文件；
+	③test：单元测试（eclipse使用Junit测试）
+	       ·将项目根目录下src/test/java目录下的单元测试类都会执行；
+		   ·单元测试类名有要求：XxxTest.java；
+	④package：打包（导出一个war包），打包到系项目的更目录下；
+	⑤install：安装，本地项目公用的一个jar
+	（项目打包成jar包，可以用里面人家封装好的东西了，存放到仓库里面的jar包）
+10.maven的生命周期
+	有三套生命周期
+	CleanLifeCycle：清理生命周期；
+	defaultLifeCycle：默认生命周期；
+	siteLifeCycle:站点生命周期；
+
+		
+	
+	
+
